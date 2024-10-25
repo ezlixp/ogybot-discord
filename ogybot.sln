@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35004.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ogybot", "ogybot.csproj", "{D989378A-9465-481F-887D-72E5A097DFAD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ogybot.Infrastructure", "ogybot.Infrastructure\ogybot.Infrastructure.csproj", "{3AE08ABB-AE08-4A5D-B9A7-1F5D9AB07A0F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ogybot.Bot", "ogybot.Bot\ogybot.Bot.csproj", "{CF6A8B42-D08D-4BB2-A66F-4F30BDF64F33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ogybot.Communication", "ogybot.Communication\ogybot.Communication.csproj", "{530DB8B9-2AD1-4462-B9C9-8DC3D47A9BB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ogybot.CrossCutting", "ogybot.CrossCutting\ogybot.CrossCutting.csproj", "{28395442-4483-43DE-A919-5DF3B56254AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ogybot.Utility", "ogybot.Utility\ogybot.Utility.csproj", "{E5FCA218-F60E-421C-A473-2C0380EF20E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ogybot.Domain", "ogybot.Domain\ogybot.Domain.csproj", "{97C058E2-F76A-4459-8340-5CAC1724E81C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +25,30 @@ Global
 		{D989378A-9465-481F-887D-72E5A097DFAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D989378A-9465-481F-887D-72E5A097DFAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D989378A-9465-481F-887D-72E5A097DFAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AE08ABB-AE08-4A5D-B9A7-1F5D9AB07A0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AE08ABB-AE08-4A5D-B9A7-1F5D9AB07A0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AE08ABB-AE08-4A5D-B9A7-1F5D9AB07A0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AE08ABB-AE08-4A5D-B9A7-1F5D9AB07A0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF6A8B42-D08D-4BB2-A66F-4F30BDF64F33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF6A8B42-D08D-4BB2-A66F-4F30BDF64F33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF6A8B42-D08D-4BB2-A66F-4F30BDF64F33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF6A8B42-D08D-4BB2-A66F-4F30BDF64F33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{530DB8B9-2AD1-4462-B9C9-8DC3D47A9BB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{530DB8B9-2AD1-4462-B9C9-8DC3D47A9BB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{530DB8B9-2AD1-4462-B9C9-8DC3D47A9BB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{530DB8B9-2AD1-4462-B9C9-8DC3D47A9BB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28395442-4483-43DE-A919-5DF3B56254AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28395442-4483-43DE-A919-5DF3B56254AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28395442-4483-43DE-A919-5DF3B56254AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28395442-4483-43DE-A919-5DF3B56254AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5FCA218-F60E-421C-A473-2C0380EF20E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5FCA218-F60E-421C-A473-2C0380EF20E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5FCA218-F60E-421C-A473-2C0380EF20E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5FCA218-F60E-421C-A473-2C0380EF20E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97C058E2-F76A-4459-8340-5CAC1724E81C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97C058E2-F76A-4459-8340-5CAC1724E81C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97C058E2-F76A-4459-8340-5CAC1724E81C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97C058E2-F76A-4459-8340-5CAC1724E81C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

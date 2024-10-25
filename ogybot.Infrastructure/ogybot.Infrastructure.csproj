@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>ogybot.Data</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="Sockets\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="SocketIOClient" Version="3.1.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ogybot.Communication\ogybot.Communication.csproj" />
+      <ProjectReference Include="..\ogybot.Domain\ogybot.Domain.csproj" />
+    </ItemGroup>
+
+</Project>
