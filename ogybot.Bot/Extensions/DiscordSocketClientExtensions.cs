@@ -19,8 +19,6 @@ public static class DiscordSocketClientExtensions
 
         await client.LoginAsync(TokenType.Bot, token);
         await client.StartAsync();
-
-        await Task.Delay(-1);
     }
 
     private static string GetBotToken(IServiceProvider services)
@@ -98,7 +96,7 @@ public static class DiscordSocketClientExtensions
 
     private static async Task HandleCommandFailureAsync(SocketInteractionContext context, IResult result)
     {
-        await context.Channel.SendMessageAsync(ErrorMessages.UnknownError);
+        await context.Interaction.FollowupAsync(ErrorMessages.UnknownError);
         throw new UnknownException(result.ErrorReason);
     }
 

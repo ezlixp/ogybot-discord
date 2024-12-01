@@ -3,11 +3,16 @@ using Discord;
 using Discord.Interactions;
 using Discord.WebSocket;
 using ogybot.Bot.Commands.Base;
+using ogybot.Bot.Handlers;
 
 namespace ogybot.Bot.Commands.Misc;
 
 public class InfoCommand : BaseCommand
 {
+    public InfoCommand(IBotExceptionHandler exceptionHandler) : base(exceptionHandler)
+    {
+    }
+
     [CommandContextType(InteractionContextType.Guild)]
     [SlashCommand("info", "Displays info about the bot, such as the github repositories.")]
     public async Task ExecuteInfoCommandAsync()

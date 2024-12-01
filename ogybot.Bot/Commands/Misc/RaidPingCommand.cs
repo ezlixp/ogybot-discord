@@ -1,6 +1,7 @@
 ﻿using Discord;
 using Discord.Interactions;
 using ogybot.Bot.Commands.Base;
+using ogybot.Bot.Handlers;
 using ogybot.Communication.Constants;
 using ogybot.Communication.Exceptions;
 using ogybot.Domain.Entities;
@@ -10,6 +11,10 @@ namespace ogybot.Bot.Commands.Misc;
 
 public class RaidPingCommand : BaseCommand
 {
+    public RaidPingCommand(IBotExceptionHandler exceptionHandler) : base(exceptionHandler)
+    {
+    }
+
     [CommandContextType(InteractionContextType.Guild)]
     [SlashCommand("raid", "Pings the provided raid role (Heavy/Light Raid)")]
     public async Task ExecuteCommandAsync(RaidType raidType, [Summary("guild", "The guild attacking our claim")] string? guildAttacking = null)
@@ -45,7 +50,7 @@ public class RaidPingCommand : BaseCommand
 
             RaidType.HeavyRaid => GuildRoleIds.HeavyRaidRole,
 
-            _ => throw new InvalidCommandArgumentException()
+            _ => throw new InvalidCommandArgumentException(ErrorMessages.InvalidRaidTypeError)
         };
     }
 }

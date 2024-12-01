@@ -24,12 +24,25 @@ public abstract class BaseClient
     {
         var request = new HttpRequestMessage(method, endpoint);
 
-        AddOptionalFieldsToRequest(content, token, request);
+        AddOptionalFieldsToRequest(request, content, token);
 
         return await SendHttpRequest(request);
     }
 
-    private static void AddOptionalFieldsToRequest(object? content, string? token, HttpRequestMessage request)
+    protected async Task<HttpResponseMessage> MakeAndSendRouteRequestAsync(
+        HttpMethod method,
+        string endpoint,
+        string route,
+        string? token = null)
+    {
+        var request = new HttpRequestMessage(method, $"{endpoint}/{route}");
+
+        AddOptionalFieldsToRequest(request, token: token);
+
+        return await SendHttpRequest(request);
+    }
+
+    private static void AddOptionalFieldsToRequest(HttpRequestMessage request, object? content = null, string? token = null)
     {
         if (content != null)
         {

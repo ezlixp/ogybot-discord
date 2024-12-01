@@ -1,10 +1,15 @@
 ﻿using Discord;
+using ogybot.Bot.Handlers;
 using ogybot.Communication.Constants;
 
 namespace ogybot.Bot.Commands.Base;
 
-public class BasePermissionRequiredCommand : BaseCommand
+public abstract class BasePermissionRequiredCommand : BaseCommand
 {
+    protected BasePermissionRequiredCommand(IBotExceptionHandler exceptionHandler) : base(exceptionHandler)
+    {
+    }
+
     /// <summary>
     /// Validates the user and channel the message has been sent to determine whether the context is valid or not.
     /// </summary>
@@ -20,11 +25,11 @@ public class BasePermissionRequiredCommand : BaseCommand
 
         if (await IsInvalidChannelAsync(channelId)) return true;
 
-        return await ValidateUserRolesAsync();
+        return await UserHasNoRolesAsync();
 
     }
 
-    private async Task<bool> ValidateUserRolesAsync()
+    private async Task<bool> UserHasNoRolesAsync()
     {
 
         var user = Context.User as IGuildUser;

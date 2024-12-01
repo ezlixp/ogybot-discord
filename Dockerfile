@@ -1,22 +1,29 @@
-#See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
+# Use the official .NET SDK 8.0 image for building
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 
-FROM mcr.microsoft.com/dotnet/runtime:7.0 AS base
+# Set the working directory inside the container
 WORKDIR /app
 
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
-ARG BUILD_CONFIGURATION=Release
-WORKDIR /src
-COPY ["ogybot.csproj", "."]
-RUN dotnet restore "./ogybot.csproj"
+# Copy all the files from the current directory to the container
 COPY . .
-WORKDIR "/src/."
-RUN dotnet build "./ogybot.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
-FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./ogybot.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+# Restore dependencies for the project
+RUN dotnet restore ogybot.Bot/ogybot.Bot.csproj
 
-FROM base AS final
+# Build the project in Release mode
+RUN dotnet build ogybot.Bot/ogybot.Bot.csproj -c Release -o /app/build
+
+# Publish the project into a folder optimized for deployment
+RUN dotnet publish ogybot.Bot/ogybot.Bot.csproj -c Release -o /app/publish --no-restore
+
+# Use the runtime-only .NET 8.0 image for the final container
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+
+# Set the working directory in the runtime container
 WORKDIR /app
-COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "ogybot.dll"]
+
+# Copy the build artifacts from the build stage
+COPY --from=build /app/publish .
+
+# Set the entry point for the container
+ENTRYPOINT ["dotnet", "ogybot.Bot.dll"]
