@@ -11,7 +11,7 @@ public abstract class BasePermissionRequiredCommand : BaseCommand
     }
 
     /// <summary>
-    /// Validates the user and channel the message has been sent to determine whether the context is valid or not.
+    ///     Validates the user and channel the message has been sent to determine whether the context is valid or not.
     /// </summary>
     /// <param name="channelId"></param>
     /// <returns></returns>

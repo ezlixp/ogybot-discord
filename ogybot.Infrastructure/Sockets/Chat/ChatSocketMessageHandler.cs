@@ -17,6 +17,20 @@ public class ChatSocketMessageHandler : IChatSocketMessageHandler
         await SendEmbedAsync(channel, messageEmbed);
     }
 
+    public async Task SendLoggingMessageAsync(IMessageChannel channel, string message)
+    {
+        var logEmbed = CreateLogEmbed(message);
+
+        await channel.SendMessageAsync(embed: logEmbed);
+    }
+
+    public string AddReplyAuthorToField(SocketUserMessage message, string author)
+    {
+        var replyAuthor = message.ReferencedMessage.Author;
+        author += $" (Replying to {replyAuthor})";
+        return author;
+    }
+
     private static Embed FormatMessageIntoEmbed(ChatSocketMessage message)
     {
         var embedBuilder = new EmbedBuilder();
@@ -92,13 +106,6 @@ public class ChatSocketMessageHandler : IChatSocketMessageHandler
         await channel.SendMessageAsync(embed: embed);
     }
 
-    public async Task SendLoggingMessageAsync(IMessageChannel channel, string message)
-    {
-        var logEmbed = CreateLogEmbed(message);
-
-        await channel.SendMessageAsync(embed: logEmbed);
-    }
-
     private static Embed CreateLogEmbed(string message)
     {
         var messageAsEmbed = new EmbedBuilder()
@@ -108,12 +115,5 @@ public class ChatSocketMessageHandler : IChatSocketMessageHandler
             .Build();
 
         return messageAsEmbed;
-    }
-
-    public string AddReplyAuthorToField(SocketUserMessage message, string author)
-    {
-        var replyAuthor = message.ReferencedMessage.Author;
-        author += $" (Replying to {replyAuthor})";
-        return author;
     }
 }

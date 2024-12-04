@@ -2,7 +2,6 @@
 
 public class AspectListUser : BaseUser
 {
-    public double Aspects { get; set; }
 
     public AspectListUser()
     {
@@ -13,4 +12,6 @@ public class AspectListUser : BaseUser
     {
 
     }
+
+    public double Aspects { get; set; }
 }

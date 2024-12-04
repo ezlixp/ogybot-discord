@@ -8,5 +8,5 @@ public interface IChatSocketSetupHandler
     Task StartAsync();
     Task<IMessageChannel> GetChannelByIdAsync(DiscordSocketClient client, ulong channelId);
     Task RequestAndAddTokenToHeadersAsync();
-
+    Task RequestAndRefreshTokenInHeadersAsync();
 }

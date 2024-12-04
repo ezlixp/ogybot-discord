@@ -3,7 +3,6 @@ using Discord.WebSocket;
 using ogybot.Communication.Exceptions;
 using ogybot.Domain.Security;
 using ogybot.Domain.Sockets.ChatSocket;
-using SocketIOClient;
 
 namespace ogybot.Data.Sockets.Chat;
 
@@ -38,5 +37,11 @@ public class ChatSocketSetupHandler : IChatSocketSetupHandler
         var token = await _tokenRequester.GetTokenAsync();
 
         _socket.Options.ExtraHeaders["Authorization"] = "Bearer " + token;
+    }
+
+    public async Task RequestAndRefreshTokenInHeadersAsync()
+    {
+        _socket.Options.ExtraHeaders.Remove("Authorization");
+        await RequestAndAddTokenToHeadersAsync();
     }
 }

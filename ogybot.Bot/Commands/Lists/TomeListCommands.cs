@@ -12,8 +12,10 @@ namespace ogybot.Bot.Commands.Lists;
 
 public class TomeListCommands : BasePermissionRequiredCommand
 {
-    private readonly ITomeListClient _tomeListClient;
     private readonly IListCommandValidator _commandValidator;
+    private readonly ITomeListClient _tomeListClient;
+
+    private const ulong ChannelId = GuildChannels.TomeChannel;
 
     public TomeListCommands(
         ITomeListClient tomeListClient,
@@ -30,7 +32,7 @@ public class TomeListCommands : BasePermissionRequiredCommand
     [SlashCommand("tomelist", "Presents the tome list to get a guild tome.")]
     public async Task ExecuteTomeListCommandAsync()
     {
-        if (await IsInvalidChannelAsync(GuildChannels.TomeChannel)) return;
+        if (await IsInvalidChannelAsync(ChannelId)) return;
 
         await TryExecutingCommandInstructionsAsync(TomeListCommandInstructionsAsync);
     }
@@ -92,7 +94,7 @@ public class TomeListCommands : BasePermissionRequiredCommand
     [SlashCommand("tomelist-add", "Adds a user to the tome list.")]
     public async Task ExecuteTomeListAddCommandAsync([Summary("user", "User to insert into the tome list")] string username)
     {
-        if (await IsInvalidChannelAsync(GuildChannels.TomeChannel))
+        if (await IsInvalidChannelAsync(ChannelId))
         {
             return;
         }
@@ -106,7 +108,7 @@ public class TomeListCommands : BasePermissionRequiredCommand
 
         await AddUserToTomeListAsync(username);
 
-        await FollowupAsync($"Successfully added player {username} to the wait list.");
+        await FollowupAsync($"Successfully added player {username} to the tome list.");
     }
 
     private async Task AddUserToTomeListAsync(string username)
@@ -130,7 +132,7 @@ public class TomeListCommands : BasePermissionRequiredCommand
     [SlashCommand("tomelist-remove", "removes a user from the tome list based on their name or index")]
     public async Task ExecuteTomeListRemoveCommandAsync([Summary("users-or-indexes", "The user's name or index")] string usernamesOrIndexes)
     {
-        if (await IsInvalidContextAsync(GuildChannels.TomeChannel)) return;
+        if (await IsInvalidContextAsync(ChannelId)) return;
 
         await TryExecutingCommandInstructionsAsync(async () => await TomeListRemoveInstructionsAsync(usernamesOrIndexes));
     }

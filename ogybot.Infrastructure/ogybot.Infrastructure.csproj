@@ -8,14 +8,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Discord.Net.Core" Version="3.16.0" />
-      <PackageReference Include="Discord.Net.WebSocket" Version="3.16.0" />
-      <PackageReference Include="SocketIOClient" Version="3.1.2" />
+        <PackageReference Include="Discord.Net.Core" Version="3.16.0"/>
+        <PackageReference Include="Discord.Net.WebSocket" Version="3.16.0"/>
+        <PackageReference Include="SocketIOClient" Version="3.1.2"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ogybot.Communication\ogybot.Communication.csproj" />
-      <ProjectReference Include="..\ogybot.Domain\ogybot.Domain.csproj" />
+        <ProjectReference Include="..\ogybot.Communication\ogybot.Communication.csproj"/>
+        <ProjectReference Include="..\ogybot.Domain\ogybot.Domain.csproj"/>
     </ItemGroup>
 
 </Project>

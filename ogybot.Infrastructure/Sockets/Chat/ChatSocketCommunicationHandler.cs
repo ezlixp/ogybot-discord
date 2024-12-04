@@ -55,8 +55,7 @@ public class ChatSocketCommunicationHandler : IChatSocketCommunicationHandler
             Console.WriteLine(message);
             await _messageHandler.SendLoggingMessageAsync(channel, message);
 
-            // Change later to refresh token instead
-            await _setupHandler.RequestAndAddTokenToHeadersAsync();
+            await _setupHandler.RequestAndRefreshTokenInHeadersAsync();
 
             await _socket.ConnectAsync();
         };
@@ -86,14 +85,14 @@ public class ChatSocketCommunicationHandler : IChatSocketCommunicationHandler
             new DiscordMessage(authorField, cleanedContent));
     }
 
-    private static bool MessageIsReply(SocketUserMessage message)
-    {
-        return message.ReferencedMessage != null;
-    }
-
     public void SetupEmitter(DiscordSocketClient client, IMessageChannel channel)
     {
         client.MessageReceived += message => SetupMessageReceiverAsync(message, channel);
+    }
+
+    private static bool MessageIsReply(SocketUserMessage message)
+    {
+        return message.ReferencedMessage != null;
     }
 
     private async Task SetupMessageReceiverAsync(SocketMessage message, IMessageChannel channel)

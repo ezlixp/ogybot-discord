@@ -8,6 +8,8 @@ namespace ogybot.Bot.Commands.Misc;
 
 public class PingChiefsCommand : BaseCommand
 {
+    private const ulong ChannelId = GuildChannels.WarChannel;
+
     public PingChiefsCommand(IBotExceptionHandler exceptionHandler) : base(exceptionHandler)
     {
     }
@@ -16,7 +18,7 @@ public class PingChiefsCommand : BaseCommand
     [SlashCommand("chiefs", "Pings the 'Active Chief' role")]
     public async Task ExecuteChiefsCommandAsync()
     {
-        if (await IsInvalidChannelAsync(GuildChannels.WarChannel))
+        if (await IsInvalidChannelAsync(ChannelId))
         {
             return;
         }

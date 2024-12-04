@@ -1,17 +1,13 @@
 ﻿using Discord;
 using Discord.WebSocket;
-using ogybot.Communication.Exceptions;
-using ogybot.Domain.Security;
-using ogybot.Domain.Sockets;
 using ogybot.Domain.Sockets.ChatSocket;
-using SocketIOClient;
 
 namespace ogybot.Data.Sockets.Chat;
 
 public class ChatSocket : IChatSocket
 {
-    private readonly IChatSocketSetupHandler _setupHandler;
     private readonly IChatSocketCommunicationHandler _communicationHandler;
+    private readonly IChatSocketSetupHandler _setupHandler;
 
     public ChatSocket(IChatSocketSetupHandler setupHandler, IChatSocketCommunicationHandler communicationHandler)
     {
@@ -28,14 +24,14 @@ public class ChatSocket : IChatSocket
         await _setupHandler.StartAsync();
     }
 
+    public async Task EmitMessageAsync(SocketUserMessage message)
+    {
+        await _communicationHandler.EmitMessageAsync(message);
+    }
+
     private async Task SetupClientAsync(IMessageChannel channel)
     {
         await _setupHandler.RequestAndAddTokenToHeadersAsync();
         _communicationHandler.SetupEventListeners(channel);
-    }
-
-    public async Task EmitMessageAsync(SocketUserMessage message)
-    {
-        await _communicationHandler.EmitMessageAsync(message);
     }
 }

@@ -31,7 +31,7 @@ public class WaitListClient : BaseClient, IWaitListClient
         var method = HttpMethod.Post;
         var token = await _tokenRequester.GetTokenAsync();
 
-        var response = await MakeAndSendRequestAsync(method, Endpoint, user, token);
+        await MakeAndSendRequestAsync(method, Endpoint, user, token);
     }
 
     public async Task RemoveUserAsync(WaitListUser user)
@@ -39,6 +39,6 @@ public class WaitListClient : BaseClient, IWaitListClient
         var method = HttpMethod.Delete;
         var token = await _tokenRequester.GetTokenAsync();
 
-        var response = await MakeAndSendRouteRequestAsync(method, Endpoint, user.Username!, token);
+        await MakeAndSendRouteRequestAsync(method, Endpoint, user.Username!, token);
     }
 }

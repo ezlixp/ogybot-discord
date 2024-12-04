@@ -1,9 +1,9 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
-using System.Text.Json;
 using ogybot.Communication.Constants;
 using ogybot.Communication.Exceptions;
+using ogybot.Domain.Entities;
 
 namespace ogybot.Data.Clients;
 
@@ -26,20 +26,11 @@ public abstract class BaseClient
 
         AddOptionalFieldsToRequest(request, content, token);
 
-        return await SendHttpRequest(request);
-    }
+        var response = await SendHttpRequestAsync(request);
 
-    protected async Task<HttpResponseMessage> MakeAndSendRouteRequestAsync(
-        HttpMethod method,
-        string endpoint,
-        string route,
-        string? token = null)
-    {
-        var request = new HttpRequestMessage(method, $"{endpoint}/{route}");
+        await EnsureSuccessStatusCodeAsync(response);
 
-        AddOptionalFieldsToRequest(request, token: token);
-
-        return await SendHttpRequest(request);
+        return response;
     }
 
     private static void AddOptionalFieldsToRequest(HttpRequestMessage request, object? content = null, string? token = null)
@@ -70,9 +61,33 @@ public abstract class BaseClient
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
     }
 
-    private async Task<HttpResponseMessage> SendHttpRequest(HttpRequestMessage request)
+    private async Task<HttpResponseMessage> SendHttpRequestAsync(HttpRequestMessage request)
     {
         return await _httpClient.SendAsync(request);
+    }
+
+    private static async Task EnsureSuccessStatusCodeAsync(HttpResponseMessage response)
+    {
+
+        if (!response.IsSuccessStatusCode)
+        {
+            var error = await ParseResponseAsync<ApiError>(response);
+
+            throw new ApiException(error.Error);
+        }
+    }
+
+    protected async Task<HttpResponseMessage> MakeAndSendRouteRequestAsync(
+        HttpMethod method,
+        string endpoint,
+        string route,
+        string? token = null)
+    {
+        var request = new HttpRequestMessage(method, $"{endpoint}/{route}");
+
+        AddOptionalFieldsToRequest(request, token: token);
+
+        return await SendHttpRequestAsync(request);
     }
 
     protected static async Task<T> ParseResponseAsync<T>(HttpResponseMessage response)

@@ -11,24 +11,24 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Discord.Net" Version="3.16.0" />
-      <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
-      <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.2" />
-      <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.1" />
-      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
+        <PackageReference Include="Discord.Net" Version="3.16.0"/>
+        <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.2"/>
+        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.1"/>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ogybot.Communication\ogybot.Communication.csproj" />
-      <ProjectReference Include="..\ogybot.CrossCutting\ogybot.CrossCutting.csproj" />
-      <ProjectReference Include="..\ogybot.Domain\ogybot.Domain.csproj" />
-      <ProjectReference Include="..\ogybot.Utility\ogybot.Utility.csproj" />
+        <ProjectReference Include="..\ogybot.Communication\ogybot.Communication.csproj"/>
+        <ProjectReference Include="..\ogybot.CrossCutting\ogybot.CrossCutting.csproj"/>
+        <ProjectReference Include="..\ogybot.Domain\ogybot.Domain.csproj"/>
+        <ProjectReference Include="..\ogybot.Utility\ogybot.Utility.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="appsettings.json">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
+        <None Update="appsettings.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
 </Project>

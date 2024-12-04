@@ -31,6 +31,6 @@ public class AspectListClient : BaseClient, IAspectListClient
         var method = HttpMethod.Post;
         var token = await _tokenRequester.GetTokenAsync();
 
-        var response = await MakeAndSendRequestAsync(method, Endpoint, user, token);
+        await MakeAndSendRequestAsync(method, Endpoint, user, token);
     }
 }

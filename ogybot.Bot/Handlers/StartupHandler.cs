@@ -1,7 +1,6 @@
 ﻿using Discord.WebSocket;
 using ogybot.Bot.Extensions;
 using ogybot.Communication.Constants;
-using ogybot.Domain.Sockets;
 using ogybot.Domain.Sockets.ChatSocket;
 
 namespace ogybot.Bot.Handlers;
@@ -13,8 +12,8 @@ public interface IStartupHandler
 
 public class StartupHandler : IStartupHandler
 {
-    private readonly DiscordSocketClient _client;
     private readonly IChatSocket _chatSocket;
+    private readonly DiscordSocketClient _client;
 
     public StartupHandler(IChatSocket chatSocket, DiscordSocketClient client)
     {

@@ -7,7 +7,6 @@ public class OnlineClient : BaseClient, IOnlineClient
 {
     private const string Endpoint = "wynn/online";
 
-
     public OnlineClient(HttpClient httpClient) : base(httpClient)
     {
     }

@@ -1,14 +1,10 @@
-﻿using Discord.WebSocket;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ogybot.Communication.Constants;
 using ogybot.Data.Clients;
 using ogybot.Data.Security.Tokens;
-using ogybot.Data.Sockets;
 using ogybot.Data.Sockets.Chat;
 using ogybot.Domain.Clients;
 using ogybot.Domain.Security;
-using ogybot.Domain.Sockets;
 using ogybot.Domain.Sockets.ChatSocket;
 using SocketIOClient;
 

@@ -1,5 +1,4 @@
 ﻿using Discord.Interactions;
-using Discord.WebSocket;
 using ogybot.Communication.Constants;
 using ogybot.Communication.Exceptions;
 

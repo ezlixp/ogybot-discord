@@ -58,5 +58,4 @@ public class InfoCommand : BaseCommand
 
         return embed;
     }
-
 }

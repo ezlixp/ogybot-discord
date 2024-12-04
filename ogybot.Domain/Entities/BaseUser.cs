@@ -2,7 +2,6 @@
 
 public abstract class BaseUser
 {
-    public string? Username { get; set; }
 
     public BaseUser()
     {
@@ -13,4 +12,6 @@ public abstract class BaseUser
     {
         Username = username;
     }
+
+    public string? Username { get; set; }
 }

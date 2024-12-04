@@ -2,7 +2,6 @@
 
 public class GetTokenRequest
 {
-    public string ValidationKey { get; set; } = string.Empty;
 
     public GetTokenRequest(string validationKey)
     {
@@ -13,4 +12,6 @@ public class GetTokenRequest
     {
 
     }
+
+    public string ValidationKey { get; set; } = string.Empty;
 }

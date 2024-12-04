@@ -2,8 +2,6 @@
 
 public class DiscordMessage
 {
-    public string Author { get; set; } = string.Empty;
-    public string Content { get; set; } = string.Empty;
 
     public DiscordMessage()
     {
@@ -14,4 +12,7 @@ public class DiscordMessage
         Author = author;
         Content = content;
     }
+
+    public string Author { get; set; } = string.Empty;
+    public string Content { get; set; } = string.Empty;
 }
